@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ title if title else "Candidate Panel" }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 240px;
+    background: #1e293b;
+    position: fixed;
+    padding: 20px;
+}
+
+.sidebar h4 {
+    color: #38bdf8;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.sidebar a:hover {
+    background: #334155;
+}
+
+.main-content {
+    margin-left: 260px;
+    padding: 30px;
+}
+
+.job-card {
+    background: #1e293b;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: 0.3s;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.badge-applied {
+    background: #10b981;
+}
+
+.badge-score {
+    background: #3b82f6;
+}
+
+.form-control {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+}
+
+.form-control:focus {
+    background: #0f172a;
+    border-color: #3b82f6;
+    color: white;
+}
+
+.btn-apply {
+    background: linear-gradient(90deg, #3b82f6, #6366f1);
+    border: none;
+}
+
+.btn-apply:hover {
+    opacity: 0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h4>Candidate Panel</h4>
+<hr style="border-color:#334155;">
+<a href="/view_jobs">Available Jobs</a>
+<a href="/my_applications">My Applications</a>
+<a href="/logout">Logout</a>
+</div>
+
+<div class="main-content">
+{% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

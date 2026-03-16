@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Account | AI Recruitment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    color: #e2e8f0;
+}
+
+.register-card {
+    background: rgba(30, 41, 59, 0.8);
+    padding: 40px;
+    border-radius: 20px;
+    width: 450px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.register-card h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, #38bdf8, #6366f1);
+  background-clip: text;
+-webkit-background-clip: text;
+color: transparent;
+-webkit-text-fill-color: transparent;
+}
+
+.form-control, .form-select {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+}
+
+.form-control:focus, .form-select:focus {
+    background: #0f172a;
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: none;
+}
+
+.btn-register {
+    background: linear-gradient(90deg, #10b981, #3b82f6);
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.btn-register:hover {
+    opacity: 0.9;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.login-link a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.form-control::placeholder {
+    color: #ffffff !important;
+    opacity: 1;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="register-card">
+
+<h3>Create AI Account</h3>
+
+<form method="POST">
+
+<div class="mb-3">
+<input type="text" name="username" class="form-control"  placeholder="Username" style="color: white;"required>
+</div>
+
+<div class="mb-3">
+<input type="email" name="email" class="form-control" placeholder="Email Address" style="color: white;" required>
+</div>
+
+<div class="mb-3">
+<input type="password" name="password" class="form-control" placeholder="Password" style="color: white;"  required>
+</div>
+
+<div class="mb-3">
+<select name="role" class="form-select" required>
+<option value="">Select Role</option>
+<option value="admin">Admin</option>
+<option value="candidate">Candidate</option>
+</select>
+</div>
+
+<button class="btn btn-register">Create Account</button>
+
+</form>
+
+<div class="login-link">
+Already have an account? <a href="/login">Login</a>
+</div>
+
+</div>
+
+</body>
+</html>

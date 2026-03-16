@@ -1,0 +1,51 @@
+{% extends "base_admin.html" %}
+{% block content %}
+
+<h3 class="mb-4">🎯 Shortlisted Candidates</h3>
+
+{% if applications %}
+
+{% for app in applications %}
+<div class="card p-4 mb-3">
+
+<div class="row">
+
+<div class="col-md-3">
+<strong>Name:</strong><br>
+{{ app.name }}
+</div>
+
+<div class="col-md-3">
+<strong>Email:</strong><br>
+{{ app.email }}
+</div>
+
+<div class="col-md-3">
+<strong>Job:</strong><br>
+{{ app.job_title }}
+</div>
+
+<div class="col-md-2">
+<strong>Score:</strong><br>
+<span class="text-success">{{ app.score }}%</span>
+</div>
+
+<div class="col-md-1 text-end">
+<a href="{{ url_for('download_resume', app_id=app.resume_id) }}"
+   class="btn btn-sm btn-primary">
+Download
+</a>
+</div>
+
+</div>
+
+</div>
+{% endfor %}
+
+{% else %}
+<div class="card p-4">
+No shortlisted candidates yet.
+</div>
+{% endif %}
+
+{% endblock %}

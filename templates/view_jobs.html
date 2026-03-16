@@ -1,0 +1,89 @@
+
+
+
+{% extends "base_candidate.html" %}
+{% block content %}
+
+<h3 class="mb-4">💼 Available Jobs</h3>
+
+<!-- SEARCH + FILTER -->
+<form method="GET" class="row mb-4">
+
+<div class="col-md-4">
+<input type="text" name="search" class="form-control"
+placeholder="Search by Job Title">
+</div>
+
+<div class="col-md-4">
+<input type="text" name="skill" class="form-control"
+placeholder="Filter by Skill">
+</div>
+
+<div class="col-md-2">
+<button class="btn btn-primary">Search</button>
+</div>
+
+</form>
+
+{% if jobs %}
+
+{% for job in jobs %}
+<div class="job-card p-4 mb-4 shadow-sm rounded">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<h5 class="mb-0">{{ job.title }}</h5>
+
+{% if job.already_applied %}
+<span class="badge bg-success">✔ Already Applied</span>
+{% endif %}
+
+</div>
+
+<p class="mt-2 text-secondary">
+{{ job.description }}
+</p>
+
+<p>
+<strong>Skills:</strong> {{ job.keywords }}
+</p>
+
+{% if not job.already_applied %}
+
+<form action="{{ url_for('apply', job_id=job._id) }}"
+      method="POST"
+      enctype="multipart/form-data">
+
+<div class="row mt-3">
+
+<div class="col-md-6">
+<input type="file"
+       name="resume"
+       class="form-control"
+       required>
+</div>
+
+<div class="col-md-3">
+<button class="btn btn-primary">
+Apply
+</button>
+</div>
+
+</div>
+
+</form>
+
+{% endif %}
+
+</div>
+{% endfor %}
+
+{% else %}
+
+<div class="job-card p-4">
+No jobs found.
+</div>
+
+{% endif %}
+
+{% endblock %}

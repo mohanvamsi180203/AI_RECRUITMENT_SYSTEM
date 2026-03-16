@@ -1,0 +1,48 @@
+{% extends "base_admin.html" %}
+{% block content %}
+
+<h3 class="mb-4">Applicants for {{ job.title }}</h3>
+
+{% if applications %}
+
+<table class="table table-bordered">
+
+<thead>
+<tr>
+<th>Rank</th>
+<th>Name</th>
+<th>Email</th>
+<th>Score</th>
+<th>Status</th>
+<th>Resume</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for app in applications %}
+<tr {% if app.top10 %} style="background:#064e3b;" {% endif %}>
+<td>{{ app.rank }}</td>
+<td>{{ app.name }}</td>
+<td>{{ app.email }}</td>
+<td>{{ app.score }}%</td>
+<td>{{ app.status }}</td>
+<td>
+<a href="{{ url_for('download_resume', app_id=app.resume_id) }}"
+   class="btn btn-sm btn-primary">
+Download
+</a>
+</td>
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+
+{% else %}
+<div class="card p-4">
+No applications yet.
+</div>
+{% endif %}
+
+{% endblock %}

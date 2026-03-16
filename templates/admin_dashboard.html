@@ -1,0 +1,95 @@
+{% extends "base_admin.html" %}
+{% block content %}
+
+<h3 class="mb-4">📊 Dashboard Overview</h3>
+
+<div class="row mb-4">
+
+<div class="col-md-4">
+<div class="card p-4">
+<p class="text-secondary mb-1">Total Jobs</p>
+<div class="stat-number">{{ total_jobs }}</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-4">
+<p class="text-secondary mb-1">Total Applications</p>
+<div class="stat-number">{{ total_applications }}</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-4">
+<p class="text-secondary mb-1">Shortlisted</p>
+<div class="stat-number text-success">{{ total_shortlisted }}</div>
+</div>
+</div>
+
+</div>
+
+<div class="card p-4 mb-5">
+<h5 class="mb-3">➕ Post New Job</h5>
+
+<form action="/post_job" method="POST">
+
+<div class="row">
+<div class="col-md-6 mb-3">
+<input class="form-control" name="title" placeholder="Job Title" required>
+</div>
+
+<div class="col-md-6 mb-3">
+<input class="form-control" name="keywords" placeholder="Keywords (comma separated)" required>
+</div>
+</div>
+
+<div class="mb-3">
+<textarea class="form-control" name="description" rows="3"
+placeholder="Job Description" required></textarea>
+</div>
+
+<button class="btn btn-primary">Post Job</button>
+
+</form>
+</div>
+
+<h5 class="mb-3">📋 Posted Jobs</h5>
+
+{% if jobs %}
+
+{% for job in jobs %}
+<div class="card p-4 mb-3">
+
+<h6 class="mb-2">{{ job.title }}</h6>
+
+<p class="text-secondary small">
+{{ job.description[:150] }}...
+</p>
+
+<div class="mt-3">
+
+<a href="/view_applicants/{{ job._id }}"
+   class="btn btn-sm btn-primary me-2">
+View Applicants
+</a>
+
+<form action="/delete_job/{{ job._id }}"
+      method="POST"
+      style="display:inline;">
+<button class="btn btn-sm btn-danger">
+Delete
+</button>
+</form>
+
+</div>
+
+</div>
+{% endfor %}
+
+{% else %}
+<div class="card p-4">
+No jobs posted yet.
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base_candidate.html" %}
+{% block content %}
+
+<h3 class="mb-4">📄 My Applications</h3>
+
+{% if applications %}
+
+<div class="row g-4">
+
+{% for app in applications %}
+<div class="col-md-6">
+    <div class="card shadow-sm border-0 h-100">
+
+        <div class="card-body">
+
+            <h5 class="card-title">{{ app.job_title }}</h5>
+
+            <p class="mb-2 text-muted small">
+                <h5 class="fw-bold mb-2">
+    {{ app.title }}
+</h5>
+                Applied on:
+                {{ app.applied_at.strftime('%d %b %Y') if app.applied_at else 'N/A' }}
+            </p>
+
+            {% if app.status == "Shortlisted" %}
+                <span class="badge bg-success">Shortlisted</span>
+            {% elif app.status == "Rejected" %}
+                <span class="badge bg-danger">Rejected</span>
+            {% else %}
+                <span class="badge bg-warning text-dark">Under Review</span>
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="alert alert-info">
+You have not applied to any jobs yet.
+</div>
+
+{% endif %}
+
+{% endblock %}
